@@ -66,15 +66,15 @@ class SnipsMPU(object):
             intent_message.session_id,
             self.__i18n.get('relayTurnOff')
         )
-@check_confidence_score
-@check_site_id
-def handler_get_unit(self, hermes, intent_message):
-    print("Get unit")
-    self.__relay.turn_off()
-    hermes.publish_end_session(
-        intent_message.session_id,
-        self.__i18n.get('getUnit')
-    )
+    @check_confidence_score
+    @check_site_id
+    def handler_get_unit(self, hermes, intent_message):
+        print("Get unit")
+        self.__relay.turn_off()
+        hermes.publish_end_session(
+            intent_message.session_id,
+            self.__i18n.get('getUnit')
+        )
 
     @check_confidence_score
     @check_site_id
