@@ -74,7 +74,7 @@ class SnipsMPU(object):
         self.__relay.unit_get()
         hermes.publish_end_session(
             intent_message.session_id,
-            self.__i18n.get('getUnit')
+            "Lowering your unit."
         )
 
     @check_confidence_score
