@@ -32,6 +32,11 @@ class RelaySwitch(object):
         GPIO.output(self._gpio_pin, GPIO.HIGH)
         print("Unit has been lowered".format(self.name))
 
+    def unit_take(self):
+        self.__status = False
+        GPIO.output(self._gpio_pin, GPIO.LOW)
+        print("Unit has been raised".format(self.name))
+
     def is_on(self):
         return self.__status
 

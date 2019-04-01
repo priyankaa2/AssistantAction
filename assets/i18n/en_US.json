@@ -5,6 +5,7 @@
     "relayTurnOn": "Light has been turned on.",
     "relayTurnOff": "Light has been turned off.",
     "getUnit": "I just got you your unit.",
+    "takeUnit": "I just took away you your unit.",
     "checkHumidity": "Hello the current humidity is {{ humidity }}%.",
     "checkTemperature": "Hello the current temperature is {{ temperature }} degrees."
 }
