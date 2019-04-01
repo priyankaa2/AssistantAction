@@ -118,7 +118,7 @@ class SnipsMPU(object):
                 self.handler_relay_turn_off
             ) \
              .subscribe_intent(
-                'pri2:getUnit',
+                'pri2.getUnit',
                 self.handler_get_unit
             ) \
             .subscribe_intent(
