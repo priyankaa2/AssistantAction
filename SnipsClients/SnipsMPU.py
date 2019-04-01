@@ -79,6 +79,16 @@ class SnipsMPU(object):
 
     @check_confidence_score
     @check_site_id
+    def handler_take_unit(self, hermes, intent_message):
+        print("Take Unit")
+        self.__relay.unit_take()
+        hermes.publish_end_session(
+            intent_message.session_id,
+            "Raising your unit."
+        )
+
+    @check_confidence_score
+    @check_site_id
     def handler_check_humidity(self, hermes, intent_message):
         print("Humidity Check")
         humidity = self.__sht31.get_humidity_string()
@@ -111,6 +121,10 @@ class SnipsMPU(object):
                 'getUnit',
                 self.handler_get_unit
             ) \
+            .subscribe_intent(
+               'takeUnit',
+               self.handler_take_unit
+           ) \
              .subscribe_intent(
                 'checkHumidity',
                 self.handler_check_humidity
