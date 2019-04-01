@@ -118,11 +118,11 @@ class SnipsMPU(object):
                 self.handler_relay_turn_off
             ) \
              .subscribe_intent(
-                'getUnit',
+                'pri2:getUnit',
                 self.handler_get_unit
             ) \
             .subscribe_intent(
-               'takeUnit',
+               'pri2:takeUnit',
                self.handler_take_unit
            ) \
              .subscribe_intent(
@@ -130,7 +130,7 @@ class SnipsMPU(object):
                 self.handler_check_humidity
             ) \
              .subscribe_intent(
-                'checkTemperature',
+                'pri2:checkTemperature',
                 self.handler_check_temperature
             ) \
              .start()
