@@ -110,15 +110,15 @@ class SnipsMPU(object):
     def start_block(self):
         with Hermes(self.__mqtt_addr) as h:
             h.subscribe_intent(
-                'relayTurnOn',
+                'pri2:relayTurnOn',
                 self.handler_relay_turn_on
             ) \
              .subscribe_intent(
-                'relayTurnOff',
+                'pri2:relayTurnOff',
                 self.handler_relay_turn_off
             ) \
              .subscribe_intent(
-                'pri2.getUnit',
+                'pri2:getUnit',
                 self.handler_get_unit
             ) \
             .subscribe_intent(
@@ -126,7 +126,7 @@ class SnipsMPU(object):
                self.handler_take_unit
            ) \
              .subscribe_intent(
-                'checkHumidity',
+                'pri2:checkHumidity',
                 self.handler_check_humidity
             ) \
              .subscribe_intent(
