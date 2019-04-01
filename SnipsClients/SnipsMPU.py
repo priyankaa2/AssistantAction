@@ -68,7 +68,7 @@ class SnipsMPU(object):
         )
     @check_confidence_score
     @check_site_id
-    def handler_relay_turn_off(self, hermes, intent_message):
+    def handler_get_unit(self, hermes, intent_message):
         print("Get Unit")
         hermes.publish_end_session(
             intent_message.session_id,
