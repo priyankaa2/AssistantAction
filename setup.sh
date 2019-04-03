@@ -8,7 +8,7 @@ VENV=venv
 if [ ! -d "$VENV" ]
 then
 
-    PYTHON=`which python3`
+    PYTHON=`which python2.7`
 
     if [ ! -f $PYTHON ]
     then
