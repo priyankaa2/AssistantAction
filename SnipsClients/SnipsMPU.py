@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import functools
-import requests
+import /usr/lib/python2.7/dist-packages/requests
 
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
