@@ -53,7 +53,7 @@ class SnipsMPU(object):
     def handler_relay_turn_on(self, hermes, intent_message):
         print("Relay Turn On")
         self.__relay.turn_on()
-        r = requests.get('http://192.168.87.24:8081/sunits/lights_on')
+        r1 = requests.get('http://192.168.87.24:8081/sunits/lights_on')
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
@@ -64,7 +64,7 @@ class SnipsMPU(object):
     def handler_relay_turn_off(self, hermes, intent_message):
         print("Relay Turn Off")
         self.__relay.turn_off()
-        r = requests.get('http://192.168.87.24:8081/sunits/lights_off')
+        r2 = requests.get('http://192.168.87.24:8081/sunits/lights_off')
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOff')
@@ -75,7 +75,9 @@ class SnipsMPU(object):
     def handler_get_unit(self, hermes, intent_message):
         print("Get Unit")
         self.__relay.unit_get()
-        r = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
+        response_get_bed = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
+        json_response_get_bed = response_get_bed.json()
+        print(json_response_get_bed)
         hermes.publish_end_session(
             intent_message.session_id,
             "Lowering your unit.")
@@ -84,8 +86,10 @@ class SnipsMPU(object):
     @check_site_id
     def handler_take_unit(self, hermes, intent_message):
         print("Take Unit")
-        r = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'morning'})
         self.__relay.unit_take()
+        response_raise_all = requests.post('http://192.168.87.24:8081/sunits/raise_all', json={'speed_factor':'3000'})
+        json_response_raise_all = response_raise_all.json()
+        print(json_response_raise_all)
         hermes.publish_end_session(
             intent_message.session_id,
             "Raising your unit.")
