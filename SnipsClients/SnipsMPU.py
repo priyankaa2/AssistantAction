@@ -55,6 +55,8 @@ class SnipsMPU(object):
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
+        response_lightson = requests.get('http://192.168.87.24:8081/sunits/lights_on')
+        print(response_lightson)
         )
 
     @check_confidence_score
@@ -65,6 +67,8 @@ class SnipsMPU(object):
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOff')
+        response_lightsoff = requests.get('http://192.168.87.24:8081/sunits/lights_off')
+        print(response_lightsoff)
         )
 
     @check_confidence_score
@@ -74,7 +78,10 @@ class SnipsMPU(object):
         self.__relay.unit_get()
         hermes.publish_end_session(
             intent_message.session_id,
-            "Lowering your unit."
+            "Lowering your unit.")
+        response_get_bed = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
+        json_response_get_bed = response_get_bed.json()
+        print(json_response_get_bed)
         )
 
     @check_confidence_score
@@ -84,7 +91,10 @@ class SnipsMPU(object):
         self.__relay.unit_take()
         hermes.publish_end_session(
             intent_message.session_id,
-            "Raising your unit."
+            "Raising your unit.")
+        response_raise_all = requests.post('http://192.168.87.24:8081/sunits/raise_all', json={'speed_factor':'3000'})
+        json_response_raise_all = response_raise_all.json()
+        print(json_response_raise_all)
         )
 
     @check_confidence_score
