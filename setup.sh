@@ -1,5 +1,4 @@
 #/usr/bin/env bash -e
-pip install requests
 
 DEFAULT_CONFIG_FILE="./config.ini.default"
 CONFIG_FILE="./config.ini"
@@ -21,7 +20,7 @@ fi
 . $VENV/bin/activate
 
 pip3 install -r requirements.txt
-
+python test.py
 
 # user config version checking
 if [ ! -e $CONFIG_FILE ]

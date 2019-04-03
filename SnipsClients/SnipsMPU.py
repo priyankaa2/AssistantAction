@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import functools
-import requests
 
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
@@ -53,7 +52,6 @@ class SnipsMPU(object):
     def handler_relay_turn_on(self, hermes, intent_message):
         print("Relay Turn On")
         self.__relay.turn_on()
-        requests.get('http://192.168.87.24:8081/sunits/lights_on')
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
