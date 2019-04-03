@@ -51,9 +51,10 @@ class SnipsMPU(object):
     @check_confidence_score
     @check_site_id
     def handler_relay_turn_on(self, hermes, intent_message):
-        print("Relay Turn On")
+        print("Light Turned On")
         self.__relay.turn_on()
-        r1 = requests.get('http://192.168.87.24:8081/sunits/lights_on')
+        response_lightson = requests.get('http://192.168.87.24:8081/sunits/lights_on')
+        print(response_lightson)
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
@@ -62,9 +63,10 @@ class SnipsMPU(object):
     @check_confidence_score
     @check_site_id
     def handler_relay_turn_off(self, hermes, intent_message):
-        print("Relay Turn Off")
+        print("Light Turned Off")
         self.__relay.turn_off()
-        r2 = requests.get('http://192.168.87.24:8081/sunits/lights_off')
+        response_lightsoff = requests.get('http://192.168.87.24:8081/sunits/lights_off')
+        print(response_lightsoff)
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOff')
