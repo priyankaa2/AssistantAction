@@ -1,4 +1,5 @@
 #/usr/bin/env bash -e
+pip install requests
 
 DEFAULT_CONFIG_FILE="./config.ini.default"
 CONFIG_FILE="./config.ini"
@@ -21,7 +22,6 @@ fi
 
 pip3 install -r requirements.txt
 
-curl -i -H "Accept: application/json" -H "Content-Type: application/json" 'http://192.168.87.24:8081/sunits/lights_off'
 
 # user config version checking
 if [ ! -e $CONFIG_FILE ]
