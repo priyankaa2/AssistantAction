@@ -83,7 +83,7 @@ class SnipsMPU(object):
         #response_get_bed = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
         #json_response_get_bed = response_get_bed.json()
         #print(json_response_get_bed)
-        )
+        
 
     @check_confidence_score
     @check_site_id
@@ -96,7 +96,7 @@ class SnipsMPU(object):
         #response_raise_all = requests.post('http://192.168.87.24:8081/sunits/raise_all', json={'speed_factor':'3000'})
         #json_response_raise_all = response_raise_all.json()
         #print(json_response_raise_all)
-        )
+
 
     @check_confidence_score
     @check_site_id
