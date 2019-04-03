@@ -53,7 +53,7 @@ class SnipsMPU(object):
     def handler_relay_turn_on(self, hermes, intent_message):
         print("Relay Turn On")
         self.__relay.turn_on()
-        response_lightson = requests.get('http://192.168.87.24:8081/sunits/lights_on')
+        r = requests.get('http://192.168.87.24:8081/sunits/lights_on')
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
@@ -64,7 +64,7 @@ class SnipsMPU(object):
     def handler_relay_turn_off(self, hermes, intent_message):
         print("Relay Turn Off")
         self.__relay.turn_off()
-        requests.get('http://192.168.87.24:8081/sunits/lights_off')
+        r = requests.get('http://192.168.87.24:8081/sunits/lights_off')
         hermes.publish_end_session(
             intent_message.session_id,
             self.__i18n.get('relayTurnOff')
@@ -75,7 +75,7 @@ class SnipsMPU(object):
     def handler_get_unit(self, hermes, intent_message):
         print("Get Unit")
         self.__relay.unit_get()
-        requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
+        r = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
         hermes.publish_end_session(
             intent_message.session_id,
             "Lowering your unit.")
@@ -84,7 +84,7 @@ class SnipsMPU(object):
     @check_site_id
     def handler_take_unit(self, hermes, intent_message):
         print("Take Unit")
-        requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'morning'})
+        r = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'morning'})
         self.__relay.unit_take()
         hermes.publish_end_session(
             intent_message.session_id,
