@@ -5,6 +5,7 @@ from snipsTools import *
 from RelaySwitch import RelaySwitch
 from SHT31 import SHT31
 from SnipsClients import SnipsMPU
+import requests
 
 VERSION = '0.3.0'
 

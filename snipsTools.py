@@ -2,6 +2,7 @@ import configparser
 import io
 import json
 import re
+import requests
 
 ENCODING_FORMAT = "utf-8"
 
