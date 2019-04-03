@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import functools
-#import requests
+import requests
 
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
@@ -57,6 +57,8 @@ class SnipsMPU(object):
             intent_message.session_id,
             self.__i18n.get('relayTurnOn')
             )
+        response_lightson = requests.get('http://192.168.87.24:8081/sunits/lights_on')
+        print(response_lightson)
 
     @check_confidence_score
     @check_site_id
