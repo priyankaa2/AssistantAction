@@ -80,9 +80,11 @@ class SnipsMPU(object):
         response_get_bed = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
         json_response_get_bed = response_get_bed.json()
         print(json_response_get_bed)
-        hermes.publish_end_session(
-            intent_message.session_id,
-            "Lowering your unit.")
+        #house_room_slot =  intent_message.slots.house_room.first()
+        #if house_room_slot is not None:
+        #sentence += 'in' + house_room_slot.value
+        house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
+        hermes.publish_end_session(intent_message.session_id, "Lowering the {}".format(str(house_room)) )
 
     @check_confidence_score
     @check_site_id
