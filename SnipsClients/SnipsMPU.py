@@ -40,7 +40,7 @@ class SnipsMPU(object):
                 )
                 return None
             elif intent_message.intent.confidence_score <= self.THRESHOLD_INTENT_CONFSCORE_TAKE:
-                hermes.publish_end_session(
+                #hermes.publish_end_session(
                     intent_message.session_id,
                     self.__i18n.get('error.doNotUnderstand')
                 )
@@ -84,7 +84,7 @@ class SnipsMPU(object):
         #if house_room_slot is not None:
         #sentence += 'in' + house_room_slot.value
         house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
-        hermes.publish_end_session(intent_message.session_id, "Lowering the {}".format(str(house_room)) )
+        hermes.publish_end_session(intent_message.session_id, "Getting the {}".format(str(house_room)) )
 
     @check_confidence_score
     @check_site_id
@@ -96,7 +96,7 @@ class SnipsMPU(object):
         print(json_response_raise_all)
         hermes.publish_end_session(
             intent_message.session_id,
-            "Raising your unit.")
+            "Taking your unit.")
 
     @check_confidence_score
     @check_site_id
