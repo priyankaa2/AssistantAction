@@ -3,9 +3,32 @@
 
 import functools
 import requests
+import time
+
+from pixel_ring import pixel_ring
+import os
 
 from hermes_python.hermes import Hermes
 from hermes_python.ontology import *
+
+pixel_ring.set_brightness(20)
+
+if __name__ == '__main__':
+    while True:
+
+        try:
+	        pixel_ring.set_color_palette(0x9900ff, 0xff00ff)
+            pixel_ring.wakeup()
+            time.sleep(3)
+            pixel_ring.think()
+	        pixel_ring.spin()
+	        time.sleep(3)
+            pixel_ring.speak()
+            time.sleep(3)
+            pixel_ring.off()
+            time.sleep(3)
+        except KeyboardInterrupt:
+            break
 
 class SnipsMPU(object):
     def __init__(self, i18n, mqtt_addr, site_id, relay, sht31):
