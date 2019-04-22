@@ -36,7 +36,7 @@ class SnipsMPU(object):
             if intent_message.intent.confidence_score < self.THRESHOLD_INTENT_CONFSCORE_DROP:
                 hermes.publish_end_session(
                     intent_message.session_id,
-                    ''
+                    "Hello there"
                 )
                 return None
             elif intent_message.intent.confidence_score <= self.THRESHOLD_INTENT_CONFSCORE_TAKE:
@@ -90,13 +90,11 @@ class SnipsMPU(object):
     @check_site_id
     def handler_take_unit(self, hermes, intent_message):
         print("Take Unit")
-        self.__relay.unit_take()
+        #self.__relay.unit_take()
         #response_raise_all = requests.post('http://192.168.87.24:8081/sunits/raise_all', json={'speed_factor':'3000'})
         #json_response_raise_all = response_raise_all.json()
         #print(json_response_raise_all)
-        hermes.publish_end_session(
-            intent_message.session_id,
-            "Taking your unit.")
+        hermes.publish_end_session(intent_message.session_id,"Taking your unit.")
 
     @check_confidence_score
     @check_site_id
