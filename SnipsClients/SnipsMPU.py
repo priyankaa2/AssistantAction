@@ -83,9 +83,9 @@ class SnipsMPU(object):
         print("Take Unit")
         self.__relay.unit_take()
         hermes.publish_end_session(intent_message.session_id,"Taking your unit.")
-        response_raise_all = requests.post('http://192.168.87.26:8081/sunits/raise_all', json={'speed_factor':'3000'})
-        json_response_raise_all = response_raise_all.json()
-        print(json_response_raise_all)
+        response_raise_all = requests.post('http://192.168.87.26:8081/sunits/raise_all')
+        #json_response_raise_all = response_raise_all.json()
+        print(response_raise_all)
 
     @check_confidence_score
     @check_site_id
