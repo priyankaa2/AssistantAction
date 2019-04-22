@@ -40,7 +40,7 @@ class SnipsMPU(object):
                 )
                 return None
             elif intent_message.intent.confidence_score <= self.THRESHOLD_INTENT_CONFSCORE_TAKE:
-                #hermes.publish_end_session(
+                hermes.publish_end_session(
                     intent_message.session_id,
                     self.__i18n.get('error.doNotUnderstand')
                 )
@@ -55,10 +55,7 @@ class SnipsMPU(object):
         self.__relay.turn_on()
         #response_lightson = requests.get('http://192.168.87.24:8081/sunits/lights_on')
         #print(response_lightson)
-        hermes.publish_end_session(
-            intent_message.session_id,
-            self.__i18n.get('relayTurnOn')
-            )
+        hermes.publish_end_session(intent_message.session_id,self.__i18n.get('relayTurnOn'))
 
     @check_confidence_score
     @check_site_id
@@ -67,10 +64,7 @@ class SnipsMPU(object):
         self.__relay.turn_off()
         #response_lightsoff = requests.get('http://192.168.87.24:8081/sunits/lights_off')
         #print(response_lightsoff)
-        hermes.publish_end_session(
-            intent_message.session_id,
-            self.__i18n.get('relayTurnOff')
-            )
+        hermes.publish_end_session(intent_message.session_id,self.__i18n.get('relayTurnOff'))
 
     @check_confidence_score
     @check_site_id
@@ -80,9 +74,6 @@ class SnipsMPU(object):
         #response_get_bed = requests.post('http://192.168.87.24:8081/sunits/switch_mode', json={'mode':'night'})
         #json_response_get_bed = response_get_bed.json()
         #print(json_response_get_bed)
-        #house_room_slot =  intent_message.slots.house_room.first()
-        #if house_room_slot is not None:
-        #sentence += 'in' + house_room_slot.value
         house_room = intentMessage.slots.house_room.first().value # We extract the value from the slot "house_room"
         hermes.publish_end_session(intent_message.session_id, "Getting the {}".format(str(house_room)) )
 
@@ -90,7 +81,7 @@ class SnipsMPU(object):
     @check_site_id
     def handler_take_unit(self, hermes, intent_message):
         print("Take Unit")
-        #self.__relay.unit_take()
+        self.__relay.unit_take()
         #response_raise_all = requests.post('http://192.168.87.24:8081/sunits/raise_all', json={'speed_factor':'3000'})
         #json_response_raise_all = response_raise_all.json()
         #print(json_response_raise_all)
@@ -101,20 +92,14 @@ class SnipsMPU(object):
     def handler_check_humidity(self, hermes, intent_message):
         print("Humidity Check")
         humidity = self.__sht31.get_humidity_string()
-        hermes.publish_end_session(
-            intent_message.session_id,
-            self.__i18n.get('checkHumidity', {"humidity": humidity})
-        )
+        hermes.publish_end_session(intent_message.session_id,self.__i18n.get('checkHumidity', {"humidity": humidity}))
 
     @check_confidence_score
     @check_site_id
     def handler_check_temperature(self, hermes, intent_message):
         print("Temperature Check")
         temperature = self.__sht31.get_temperature_string()
-        hermes.publish_end_session(
-            intent_message.session_id,
-            self.__i18n.get('checkTemperature', {"temperature": temperature})
-        )
+        hermes.publish_end_session(intent_message.session_id,self.__i18n.get('checkTemperature', {"temperature": temperature}))
 
     def start_block(self):
         with Hermes(self.__mqtt_addr) as h:
