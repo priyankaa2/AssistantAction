@@ -77,7 +77,7 @@ class SnipsMPU(object):
         print("Light Turned On")
         self.__relay.turn_on()
         hermes.publish_end_session(intent_message.session_id,self.__i18n.get('relayTurnOn'))
-        response_lightson = requests.get('http://110.8.9.4:8081/sunits/lights_on')
+        response_lightson = requests.get('http://10.8.9.4:8081/sunits/lights_on')
         print(response_lightson)
 
     @check_confidence_score
