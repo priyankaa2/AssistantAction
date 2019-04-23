@@ -77,7 +77,7 @@ class SnipsMPU(object):
         print("Light Turned On")
         self.__relay.turn_on()
         hermes.publish_end_session(intent_message.session_id,self.__i18n.get('relayTurnOn'))
-        response_lightson = requests.get('http://10.8.9.4:8081/sunits/lights_on')
+        response_lightson = requests.get('http://192.168.87.26:8081/sunits/lights_on')
         print(response_lightson)
 
     @check_confidence_score
@@ -86,7 +86,7 @@ class SnipsMPU(object):
         print("Light Turned Off")
         self.__relay.turn_off()
         hermes.publish_end_session(intent_message.session_id,self.__i18n.get('relayTurnOff'))
-        response_lightsoff = requests.get('http://10.8.9.4:8081/sunits/lights_off')
+        response_lightsoff = requests.get('http://192.168.87.26:8081/sunits/lights_off')
         print(response_lightsoff)
 
     @check_confidence_score
@@ -95,7 +95,7 @@ class SnipsMPU(object):
         print("Get Unit")
         self.__relay.unit_get()
         hermes.publish_end_session(intent_message.session_id, "Getting the bed")
-        response_get_bed = requests.post('http://10.8.9.4:8081/sunits/switch_mode', json={'mode':'night'})#, 'safe_mode':0})
+        response_get_bed = requests.post('http://192.168.87.26:8081/sunits/switch_mode', json={'mode':'night'})
         json_response_get_bed = response_get_bed.json()
         print(json_response_get_bed)
         #house_room = intent_message.slots.house_room.first().value # We extract the value from the slot "house_room"
@@ -106,7 +106,7 @@ class SnipsMPU(object):
         print("Take Unit")
         self.__relay.unit_take()
         hermes.publish_end_session(intent_message.session_id,"Okay.")
-        response_raise_all = requests.post('http://10.8.9.4:8081/sunits/raise_all')
+        response_raise_all = requests.post('http://192.168.87.26:8081/sunits/raise_all')
         #json_response_raise_all = response_raise_all.json()
         print(response_raise_all)
 
