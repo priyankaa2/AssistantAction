@@ -72,7 +72,7 @@ class SnipsMPU(object):
         print("Get Unit")
         self.__relay.unit_get()
         hermes.publish_end_session(intent_message.session_id, "Getting the bed")
-        response_get_bed = requests.post('http://192.168.87.26:8081/sunits/switch_mode', json={'mode':'night', 'safety_mode':0})
+        response_get_bed = requests.post('http://192.168.87.26:8081/sunits/switch_mode', json={'mode':'night', 'safe_mode':0})
         json_response_get_bed = response_get_bed.json()
         print(json_response_get_bed)
         #house_room = intent_message.slots.house_room.first().value # We extract the value from the slot "house_room"
